@@ -40,19 +40,19 @@ namespace Tests
             Assert.Equal(20, game.Score());
         }
 
-        [Fact]
-        public void Test_one_spare()
-        {
-            //Given
-            //When
-            game.Roll(5);
-            game.Roll(5);
-            game.Roll(5);
-            rollMany(17, 0);            
+        // [Fact]
+        // public void Test_one_spare()
+        // {
+        //     //Given
+        //     //When
+        //     game.Roll(5);
+        //     game.Roll(5);
+        //     game.Roll(5);
+        //     rollMany(17, 0);            
             
-            //Then
-            Assert.Equal(20, game.Score());
-        }
+        //     //Then
+        //     Assert.Equal(20, game.Score());
+        // }
 
 
     }

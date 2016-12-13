@@ -1,25 +1,32 @@
 ﻿using System;
+using System.Linq;
 
 namespace ClassLibrary
 {
     public class Game
     {
-        private Frame[] frames;
-        private int score;
+        private Frame[] frames = new Frame[10];
+        private int i;
 
         public Game ()
         {
-            frames = new Frame[10];          
+            i = 0;
+            for (int i = 0; i < 10; i++)
+            {
+                frames[i] = new Frame();
+            }         
         }
 
         public void Roll(int pins)
         {
-            score+=pins;    
+            frames[i].setScore(pins);            
+            if (frames[i].done)
+                i++; 
         }
 
         public int Score() 
         {
-            return score;             
+            return frames.Sum(s=>s.Score());          
         }
     }
 }
