@@ -19,7 +19,20 @@ namespace ClassLibrary
 
         public void Roll(int pins)
         {
-            frames[i].setScore(pins);            
+            frames[i].setScore(pins);
+
+            if(frames[i].isStrike()){
+                frames[i].done = true;
+            }
+
+            if(frames[i].done && 0<i && frames[i-1].isStrike()){
+                frames[i-1].setBonus(frames[i].ScoreWithoutBonus());
+            }  
+
+            if(!frames[i].done && 0<i && frames[i-1].isSpare()){
+                frames[i-1].setBonus(pins);                
+            }
+
             if (frames[i].done)
                 i++; 
         }
