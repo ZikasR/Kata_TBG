@@ -25,7 +25,7 @@ namespace ClassLibrary
                 frames[i].done = true;
             }
 
-            if(frames[i].done && 0<i && frames[i-1].isStrike()){
+            if(frames[i].done && 0<i && frames[i-1].isStrike()){                
                 frames[i-1].setBonus(frames[i].ScoreWithoutBonus());
             }  
 
@@ -33,6 +33,7 @@ namespace ClassLibrary
                 frames[i-1].setBonus(pins);                
             }
 
+            
             if (frames[i].done)
                 i++; 
         }

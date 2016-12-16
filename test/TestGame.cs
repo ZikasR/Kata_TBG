@@ -57,17 +57,29 @@ namespace Tests
         [Fact]
         public void Test_one_strike()
         {
-        //Given
+            //Given
             game.Roll(10);
             game.Roll(3);
             game.Roll(4);
             rollMany(16, 0);            
             
         
-        //When
-        
-        //Then
+            //When
+            
+            //Then
             Assert.Equal(24, game.Score());
+        }
+
+        [Fact]
+        public void Test_perfect_game()
+        {
+            //Given
+            //When
+                rollMany(12, 10);            
+            
+            
+            //Then
+            Assert.Equal(300, game.Score());            
         }
 
 
