@@ -1,1 +1,1 @@
-# KATA_TBG_V2
+# Kata the Bowling Game
