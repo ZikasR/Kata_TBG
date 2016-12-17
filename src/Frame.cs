@@ -20,12 +20,12 @@ namespace BowlingGame
         public virtual int GetScore(){
             int score = 0;
 
-            if (this.done)
+            if (this.done && !this.IsStrike())
             {
                 score += (int)this.firstShot + (int)this.secondShot;
             }
 
-            else if(this.firstShot != null){
+            else if(this.firstShot != null || this.IsStrike()){
                 score += (int)this.firstShot;
             }
 
@@ -37,6 +37,9 @@ namespace BowlingGame
         public virtual void Score(int pins){
             if(this.firstShot == null) {
                 this.firstShot = pins;
+                if(this.IsStrike()){
+                    this.done = true;
+                }
             }
             else if(this.secondShot == null){
                 this.secondShot = pins;
@@ -45,13 +48,24 @@ namespace BowlingGame
         }
 
         public void AddBonus(Frame frame){
+
             if(this.IsSpare()){
                 this.bonus = (int)frame.firstShot;
+            }
+            else if(this.IsStrike() && !frame.IsStrike()){
+                this.bonus = (int)frame.firstShot + (int)frame.secondShot;
+            }
+            else if(this.IsStrike() && frame.IsStrike()){
+                this.bonus = 20;
             }
         }
 
         protected bool IsSpare(){
             return this.firstShot != null && this.secondShot != null && (int)this.firstShot + (int)this.secondShot == 10 && (int)this.firstShot != 10;
+        }
+
+        protected bool IsStrike(){
+            return this.firstShot == 10;
         }
 
     }

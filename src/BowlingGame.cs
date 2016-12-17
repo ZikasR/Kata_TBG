@@ -26,12 +26,14 @@ namespace BowlingGame
         {
 
             frames[i].Score(pins);
-
-            if(i > 0)
-                frames[i-1].AddBonus(frames[i]);
-
-            if(frames[i].done)
+            
+            if(frames[i].done){            
+                if(i > 0)                       
+                    frames[i-1].AddBonus(frames[i]);
                 i++;
+                }
+
+
         }
 
         public int GetScore(){

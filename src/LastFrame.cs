@@ -14,14 +14,18 @@ namespace BowlingGame
             else if(this.secondShot == null){
                 this.secondShot = pins;
 
-                if(!this.IsSpare()){
+                if(!this.IsSpare() && !this.IsStrike()){
                     this.done = true;
                 }
             }
             else if(this.thirdShot == null){
-                this.thirdShot = pins;
-                if(this.IsSpare())
+                if(this.IsStrike()){
+                    this.bonus = pins;
+                }
+                
+                else if(this.IsSpare())
                 {
+                    this.thirdShot = pins;
                     this.bonus = (int)this.thirdShot;
                 }
 
@@ -51,7 +55,7 @@ namespace BowlingGame
             score += this.bonus;
 
             return score;
-        }    
+        }   
     }
 }
 

@@ -54,7 +54,7 @@ namespace BowlingGameTests
         }
 
         [Fact]
-        public void test_all_shots_kncked_5_pins()
+        public void test_all_spares()
         {
             for (int i = 0; i < 21; i++)
             {
@@ -63,6 +63,45 @@ namespace BowlingGameTests
 
             Assert.Equal(155, game.GetScore());        
         
+        }
+
+        [Fact]
+        public void test_one_strike()
+        {
+            game.Roll(10);
+            game.Roll(5);
+
+            for (int i = 0; i < 17; i++)
+            {
+                game.Roll(0);
+            }
+
+            Assert.Equal(20, game.GetScore());
+        }
+
+        [Fact]
+        public void test_two_strike()
+        {
+            game.Roll(10);
+            game.Roll(10);
+
+            for (int i = 0; i < 16; i++)
+            {
+                game.Roll(0);
+            }
+
+            Assert.Equal(40, game.GetScore());
+        }
+
+        [Fact]
+        public void test_all_strikes()
+        {
+            for (int i = 0; i < 12; i++)
+            {
+                game.Roll(10);
+            }
+
+            Assert.Equal(300, game.GetScore());           
         }
     }
 }
